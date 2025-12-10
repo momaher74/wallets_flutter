@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeCubit extends Cubit<ThemeMode> {
-  ThemeCubit(this._prefs) : super(ThemeMode.system);
+  ThemeCubit(this._prefs) : super(ThemeMode.dark);
 
   final SharedPreferences _prefs;
   static const _key = 'theme_mode';
@@ -18,7 +18,7 @@ class ThemeCubit extends Cubit<ThemeMode> {
         emit(ThemeMode.dark);
         break;
       default:
-        emit(ThemeMode.system);
+        emit(ThemeMode.dark);
     }
   }
 

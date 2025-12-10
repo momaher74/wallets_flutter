@@ -29,6 +29,18 @@ class AuthRepository {
     return User(name: email.split('@').first, email: email, token: token);
   }
 
+  Future<void> register({required String username, required String email, required String phoneNumber, required String password}) async {
+    final res = await _dioClient.dio.post('/auth/register', data: {
+      'username': username,
+      'email': email,
+      'phoneNumber': phoneNumber,
+      'password': password,
+    });
+    if (res.statusCode != 200 && res.statusCode != 201) {
+      throw Exception('error');
+    }
+  }
+
   Future<void> logout() async {
     await _prefs.remove(_tokenKey);
   }
